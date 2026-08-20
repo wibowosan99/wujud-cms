@@ -21,8 +21,23 @@ export async function generateMetadata() {
 
 export default function RootLayout({ children }) {
   const settings = getSettings();
+
+  const themeVars = [
+    settings.theme_emerald && `--color-emerald: ${settings.theme_emerald};`,
+    settings.theme_emerald_deep && `--color-emerald-deep: ${settings.theme_emerald_deep};`,
+    settings.theme_gold && `--color-gold: ${settings.theme_gold};`,
+    settings.theme_sand && `--color-sand: ${settings.theme_sand};`,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <html lang="id" className="h-full antialiased">
+      {themeVars && (
+        <head>
+          <style>{`:root { ${themeVars} }`}</style>
+        </head>
+      )}
       <body className="min-h-full flex flex-col bg-sand text-ink">
         <SiteChrome settings={settings}>{children}</SiteChrome>
       </body>
