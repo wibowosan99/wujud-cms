@@ -11,6 +11,8 @@ import "./globals.css";
 import SiteChrome from "@/components/site/SiteChrome";
 import { getSettings } from "@/lib/data";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
   const settings = getSettings();
   return {
