@@ -12,10 +12,12 @@ import {
 } from '@/lib/data';
 import PackageCard from '@/components/site/PackageCard';
 import SectionHeading from '@/components/site/SectionHeading';
+import HeroBackground from '@/components/site/HeroBackground';
 
 export default function HomePage() {
   const settings = getSettings();
-  const hero = getHeroSlides()[0];
+  const heroSlides = getHeroSlides();
+  const hero = heroSlides[0];
   const stats = getStats();
   const packages = getFeaturedPackages().slice(0, 3);
   const testimonials = getTestimonials();
@@ -27,11 +29,7 @@ export default function HomePage() {
     <>
       {/* HERO */}
       <section className="relative bg-emerald-deep text-white overflow-hidden">
-        <div className="absolute inset-0" style={{
-          backgroundImage: hero?.image ? `url(${hero.image})` : undefined,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }} />
+        <HeroBackground slides={heroSlides} />
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-deep/70 via-emerald-deep/60 to-emerald-deep" />
         <div className="relative container-x pt-24 pb-32 sm:pt-36 sm:pb-44">
           <span className="eyebrow text-gold-light">{settings.tagline}</span>

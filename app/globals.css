@@ -144,3 +144,17 @@ h1, h2, h3, h4, .font-display {
   margin-bottom: 1.1em;
   line-height: 1.8;
 }
+
+/* Slow "Ken Burns" zoom for hero background images */
+@keyframes hero-kenburns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.12); }
+}
+.animate-hero-kenburns {
+  animation: hero-kenburns 14s ease-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-kenburns {
+    animation: none;
+  }
+}
