@@ -9,7 +9,10 @@ import "@fontsource/plus-jakarta-sans/600.css";
 import "@fontsource/plus-jakarta-sans/700.css";
 import "./globals.css";
 import SiteChrome from "@/components/site/SiteChrome";
-import { getSettings } from "@/lib/data";
+import Header from "@/components/site/Header";
+import Footer from "@/components/site/Footer";
+import WhatsAppFloat from "@/components/site/WhatsAppFloat";
+import { getSettings, getPackages } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 
@@ -23,6 +26,12 @@ export async function generateMetadata() {
 
 export default function RootLayout({ children }) {
   const settings = getSettings();
+
+  const menuData = {
+    umroh: getPackages({ category: "umroh" }),
+    haji: getPackages({ category: "haji" }),
+    halal: getPackages({ category: "halal" }),
+  };
 
   const themeVars = [
     settings.theme_emerald && `--color-emerald: ${settings.theme_emerald};`,
@@ -41,7 +50,13 @@ export default function RootLayout({ children }) {
         </head>
       )}
       <body className="min-h-full flex flex-col bg-sand text-ink">
-        <SiteChrome settings={settings}>{children}</SiteChrome>
+        <SiteChrome
+          header={<Header siteName={settings.site_name} logo={settings.logo} menuData={menuData} />}
+          footer={<Footer settings={settings} />}
+          waFloat={<WhatsAppFloat settings={settings} />}
+        >
+          {children}
+        </SiteChrome>
       </body>
     </html>
   );
