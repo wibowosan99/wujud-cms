@@ -25,6 +25,11 @@ export default function ArtikelPage() {
                   )}
                 </div>
                 {a.category && <span className="eyebrow text-gold mt-4 block">{a.category}</span>}
+                {a.published_at && (
+                  <time className="text-xs text-ink/45 mt-1 block">
+                    {new Date(a.published_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  </time>
+                )}
                 <h3 className="font-display text-xl mt-2 group-hover:text-emerald transition-colors">{a.title}</h3>
                 {a.excerpt && <p className="mt-2 text-sm text-ink/60 line-clamp-2">{a.excerpt}</p>}
               </Link>

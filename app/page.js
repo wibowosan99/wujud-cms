@@ -13,6 +13,7 @@ import {
 import PackageCard from '@/components/site/PackageCard';
 import SectionHeading from '@/components/site/SectionHeading';
 import HeroBackground from '@/components/site/HeroBackground';
+import LogoMarquee from '@/components/site/LogoMarquee';
 
 export default function HomePage() {
   const settings = getSettings();
@@ -181,6 +182,23 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* CTA BANNER #1 - slim WhatsApp strip, right after Why Us */}
+      <section className="bg-gold">
+        <div className="container-x py-8 flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
+          <p className="font-display text-xl sm:text-2xl text-emerald-deep leading-snug">
+            Masih ragu memilih paket? Konsultasi gratis dengan tim kami sekarang.
+          </p>
+          <a
+            href={waLink(settings)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn bg-emerald-deep text-white hover:bg-emerald shrink-0"
+          >
+            Chat via WhatsApp
+          </a>
+        </div>
+      </section>
+
       {/* TESTIMONIALS */}
       {testimonials.length > 0 && (
         <section className="container-x py-16 sm:py-24">
@@ -207,19 +225,8 @@ export default function HomePage() {
         <section className="bg-white border-y border-line py-12">
           <div className="container-x">
             <p className="eyebrow text-ink/40 text-center mb-8">Mitra &amp; Kolaborasi Kami</p>
-            <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 opacity-70">
-              {partners.map((p) => (
-                <div key={p.id} className="text-sm font-medium text-ink/60">
-                  {p.logo ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={p.logo} alt={p.name} className="h-8 w-auto grayscale" />
-                  ) : (
-                    p.name
-                  )}
-                </div>
-              ))}
-            </div>
           </div>
+          <LogoMarquee partners={partners} />
         </section>
       )}
 
@@ -248,21 +255,6 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* CTA BANNER */}
-      <section className="bg-emerald text-white">
-        <div className="container-x py-16 sm:py-20 text-center">
-          <h2 className="font-display text-3xl sm:text-4xl max-w-xl mx-auto leading-tight">
-            Doa Telah Terucap, Kini Saatnya Melangkah ke Baitullah
-          </h2>
-          <p className="mt-4 text-sand/70 max-w-md mx-auto">
-            Dapatkan penawaran terbaik dan konsultasi gratis untuk perjalanan ibadah Anda.
-          </p>
-          <a href={waLink(settings)} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-8">
-            Dapatkan Penawaran Terbaik
-          </a>
-        </div>
-      </section>
-
       {/* ARTICLES */}
       {articles.length > 0 && (
         <section className="container-x py-16 sm:py-24">
@@ -285,13 +277,38 @@ export default function HomePage() {
                     </div>
                   )}
                 </div>
-                {a.category && <span className="eyebrow text-gold mt-4 block">{a.category}</span>}
+                <div className="mt-4 flex items-center gap-3">
+                  {a.category && <span className="eyebrow text-gold">{a.category}</span>}
+                  {a.published_at && (
+                    <>
+                      {a.category && <span className="text-ink/25">&middot;</span>}
+                      <time className="text-xs text-ink/45">
+                        {new Date(a.published_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                      </time>
+                    </>
+                  )}
+                </div>
                 <h3 className="font-display text-lg mt-2 group-hover:text-emerald transition-colors">{a.title}</h3>
               </Link>
             ))}
           </div>
         </section>
       )}
+
+      {/* CTA BANNER #2 - final call to action, right before footer */}
+      <section className="bg-emerald text-white">
+        <div className="container-x py-16 sm:py-20 text-center">
+          <h2 className="font-display text-3xl sm:text-4xl max-w-xl mx-auto leading-tight">
+            Doa Telah Terucap, Kini Saatnya Melangkah ke Baitullah
+          </h2>
+          <p className="mt-4 text-sand/70 max-w-md mx-auto">
+            Dapatkan penawaran terbaik dan konsultasi gratis untuk perjalanan ibadah Anda.
+          </p>
+          <a href={waLink(settings)} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-8">
+            Dapatkan Penawaran Terbaik
+          </a>
+        </div>
+      </section>
     </>
   );
 }
