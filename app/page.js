@@ -27,13 +27,13 @@ export default function HomePage() {
     <>
       {/* HERO */}
       <section className="relative bg-emerald-deep text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-25" style={{
+        <div className="absolute inset-0" style={{
           backgroundImage: hero?.image ? `url(${hero.image})` : undefined,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-deep/40 via-emerald-deep/80 to-emerald-deep" />
-        <div className="relative container-x pt-24 pb-28 sm:pt-32 sm:pb-36">
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-deep/70 via-emerald-deep/60 to-emerald-deep" />
+        <div className="relative container-x pt-24 pb-32 sm:pt-36 sm:pb-44">
           <span className="eyebrow text-gold-light">{settings.tagline}</span>
           <h1 className="font-display text-4xl sm:text-6xl mt-5 max-w-3xl leading-[1.1]">
             {hero?.title || 'Perjalanan yang Bukan Sekadar Tujuan, Tapi Sebuah Makna'}
@@ -51,7 +51,33 @@ export default function HomePage() {
           </div>
         </div>
         <div className="arch-row text-sand relative" />
+
+        {/* FACILITY HIGHLIGHTS - overlapping the hero/section boundary */}
+        <div className="relative container-x">
+          <div className="grid sm:grid-cols-3 gap-px bg-line -mb-16 sm:-mb-20 relative z-10 shadow-xl">
+            {[
+              {
+                title: 'Fasilitas Terbaik',
+                text: 'Akomodasi premium, transportasi modern, dan sajian halal bergizi di sepanjang perjalanan Anda.',
+              },
+              {
+                title: 'Pelayanan Prima',
+                text: 'Tim profesional kami siap melayani dengan ramah, sigap, dan penuh perhatian di setiap detail.',
+              },
+              {
+                title: 'Penuh Pemaknaan',
+                text: 'Bukan hanya soal destinasi, tapi tentang menemukan makna di setiap langkah ibadah Anda.',
+              },
+            ].map((f) => (
+              <div key={f.title} className="bg-white p-7 sm:p-8">
+                <span className="eyebrow text-gold">{f.title}</span>
+                <p className="mt-3 text-sm text-ink/65 leading-relaxed">{f.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
+      <div className="h-16 sm:h-20" />
 
       {/* STATS */}
       {stats.length > 0 && (
@@ -92,29 +118,62 @@ export default function HomePage() {
       {/* WHY US */}
       <section className="bg-emerald-tint py-16 sm:py-24">
         <div className="container-x">
-          <SectionHeading
-            eyebrow="Komitmen Kami"
-            title="Mengapa Memilih Wujud Tour"
-            description="Bukan sekadar perjalanan &mdash; setiap program kami dirancang untuk memberi pengalaman ibadah yang tenang, terarah, dan penuh makna."
-          />
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+            <SectionHeading
+              eyebrow="Komitmen Kami"
+              title="Mengapa Memilih Wujud Tour"
+              description="Bukan sekadar perjalanan &mdash; setiap program kami dirancang untuk memberi pengalaman ibadah yang tenang, terarah, dan penuh makna."
+            />
+            {stats.length > 0 && (
+              <div className="flex items-center gap-4 bg-white border border-line px-6 py-4 shrink-0">
+                <span className="font-display text-3xl text-emerald">4.9</span>
+                <div className="w-px h-10 bg-line" />
+                <div>
+                  <div className="font-display text-lg text-emerald leading-none">
+                    {stats.find((s) => /jamaah|keberangkatan/i.test(s.label))?.value || stats[0]?.value}
+                    <span className="text-sm">+</span>
+                  </div>
+                  <div className="eyebrow text-ink/40 mt-1.5 text-[0.65rem]">Jamaah Puas</div>
+                </div>
+              </div>
+            )}
+          </div>
           <div className="mt-12 grid sm:grid-cols-3 gap-10">
             {[
               {
                 title: 'Perjalanan Penuh Makna',
                 text: 'Setiap itinerary disusun agar jamaah tidak hanya sampai ke tujuan, tapi juga pulang dengan hati yang lebih tenang.',
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+                    <path d="M12 2 L12 22 M2 12 L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
+                  </svg>
+                ),
               },
               {
                 title: 'Tim Berpengalaman',
                 text: 'Didampingi pembimbing ibadah dan tour leader yang berpengalaman menangani jamaah dari berbagai latar belakang.',
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+                    <circle cx="12" cy="8" r="3.5" stroke="currentColor" strokeWidth="1.5" />
+                    <path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                ),
               },
               {
                 title: 'Transparan & Amanah',
                 text: 'Informasi biaya, jadwal, dan fasilitas disampaikan sejak awal tanpa biaya tersembunyi.',
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+                    <path d="M12 3 L20 6.5 V11 C20 16 16.5 19.5 12 21 C7.5 19.5 4 16 4 11 V6.5 Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                    <path d="M9 12 L11 14 L15.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ),
               },
             ].map((f) => (
               <div key={f.title}>
-                <div className="h-10 w-10 rounded-full border border-gold flex items-center justify-center text-gold font-display">
-                  &#9733;
+                <div className="h-11 w-11 rounded-full border border-gold flex items-center justify-center text-gold">
+                  {f.icon}
                 </div>
                 <h3 className="font-display text-xl mt-4">{f.title}</h3>
                 <p className="mt-2 text-ink/65 text-sm leading-relaxed">{f.text}</p>
