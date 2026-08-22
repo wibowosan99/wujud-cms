@@ -27,8 +27,8 @@ export default function HeroBackground({ slides }) {
           style={{ opacity: i === active ? 1 : 0 }}
         >
           <div
-            className="absolute inset-0 bg-cover animate-hero-kenburns"
-            style={{ backgroundImage: `url(${src})`, backgroundPosition: 'center 30%' }}
+            className="absolute inset-0 bg-cover bg-[position:18%_28%] sm:bg-[position:center_32%] animate-hero-kenburns"
+            style={{ backgroundImage: `url(${src})` }}
           />
         </div>
       ))}
