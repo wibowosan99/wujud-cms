@@ -148,7 +148,7 @@ h1, h2, h3, h4, .font-display {
 /* Slow "Ken Burns" zoom for hero background images */
 @keyframes hero-kenburns {
   0% { transform: scale(1); }
-  100% { transform: scale(1.12); }
+  100% { transform: scale(1.08); }
 }
 .animate-hero-kenburns {
   animation: hero-kenburns 14s ease-out infinite alternate;

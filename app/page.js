@@ -29,10 +29,10 @@ export default function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative bg-emerald-deep text-white overflow-hidden">
+      <section className="relative bg-emerald-deep text-white overflow-hidden min-h-[520px] sm:min-h-[600px] lg:min-h-[680px] flex items-center">
         <HeroBackground slides={heroSlides} />
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-deep/70 via-emerald-deep/60 to-emerald-deep" />
-        <div className="relative container-x pt-24 pb-32 sm:pt-36 sm:pb-44">
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-deep/55 via-emerald-deep/40 to-emerald-deep" />
+        <div className="relative container-x py-20 sm:py-28 w-full">
           <span className="eyebrow text-gold-light">{settings.tagline}</span>
           <h1 className="font-display text-4xl sm:text-6xl mt-5 max-w-3xl leading-[1.1]">
             {hero?.title || 'Perjalanan yang Bukan Sekadar Tujuan, Tapi Sebuah Makna'}
@@ -49,7 +49,7 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="arch-row text-sand relative" />
+        <div className="arch-row text-sand absolute bottom-0 left-0 right-0" />
 
         {/* FACILITY HIGHLIGHTS - overlapping the hero/section boundary */}
         <div className="relative container-x">
