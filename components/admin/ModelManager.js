@@ -1,14 +1,24 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 
-function emptyFromFields(fields) {
+function emptyFromFields(fields, preset) {
   const obj = {};
   for (const f of fields) obj[f.name] = f.type === 'checkbox' ? 0 : f.type === 'number' ? 0 : '';
-  return obj;
+  return { ...obj, ...preset };
 }
 
-export default function ModelManager({ model, title, fields, columns, helpText }) {
+export default function ModelManager(props) {
+  return (
+    <Suspense fallback={<p className="text-sm text-ink/50">Memuat...</p>}>
+      <ModelManagerInner {...props} />
+    </Suspense>
+  );
+}
+
+function ModelManagerInner({ model, title, fields, columns, helpText, extraRowAction, renderSummary }) {
+  const searchParams = useSearchParams();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(null); // null = closed, {} = new, {...} = edit
@@ -16,6 +26,11 @@ export default function ModelManager({ model, title, fields, columns, helpText }
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [uploadingField, setUploadingField] = useState('');
+
+  // Generic URL-based filter: if the URL has ?<fieldName>=value matching one of
+  // this model's fields, filter the list to that value and pre-fill new items with it.
+  const filterField = fields.find((f) => searchParams.get(f.name))?.name || null;
+  const filterValue = filterField ? searchParams.get(filterField) : null;
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -29,8 +44,10 @@ export default function ModelManager({ model, title, fields, columns, helpText }
     load();
   }, [load]);
 
+  const visibleItems = filterField ? items.filter((it) => String(it[filterField] ?? '') === filterValue) : items;
+
   function openNew() {
-    setForm(emptyFromFields(fields));
+    setForm(emptyFromFields(fields, filterField ? { [filterField]: filterValue } : {}));
     setEditing({});
     setError('');
   }
@@ -233,10 +250,12 @@ export default function ModelManager({ model, title, fields, columns, helpText }
         </form>
       )}
 
+      {renderSummary && !loading && renderSummary(visibleItems)}
+
       <div className="bg-white border border-line overflow-x-auto">
         {loading ? (
           <p className="p-6 text-sm text-ink/50">Memuat data...</p>
-        ) : items.length === 0 ? (
+        ) : visibleItems.length === 0 ? (
           <p className="p-6 text-sm text-ink/50">Belum ada data. Klik &quot;+ Tambah {title}&quot; untuk mulai mengisi.</p>
         ) : (
           <table className="w-full text-sm">
@@ -245,11 +264,11 @@ export default function ModelManager({ model, title, fields, columns, helpText }
                 {displayCols.map((c) => (
                   <th key={c} className="px-4 py-3 font-medium text-ink/60 capitalize">{c.replace(/_/g, ' ')}</th>
                 ))}
-                <th className="px-4 py-3 w-32"></th>
+                <th className="px-4 py-3 w-40"></th>
               </tr>
             </thead>
             <tbody>
-              {items.map((item) => (
+              {visibleItems.map((item) => (
                 <tr key={item.id} className="border-t border-line hover:bg-sand/50">
                   {displayCols.map((c) => (
                     <td key={c} className="px-4 py-3 text-ink/75 max-w-xs truncate">
@@ -259,6 +278,11 @@ export default function ModelManager({ model, title, fields, columns, helpText }
                     </td>
                   ))}
                   <td className="px-4 py-3 text-right whitespace-nowrap">
+                    {extraRowAction && (
+                      <a href={extraRowAction(item).href} className="text-gold hover:underline mr-4 text-xs font-medium">
+                        {extraRowAction(item).label}
+                      </a>
+                    )}
                     <button onClick={() => openEdit(item)} className="text-emerald hover:underline mr-4 text-xs font-medium">
                       Ubah
                     </button>

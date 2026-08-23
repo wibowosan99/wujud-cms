@@ -33,6 +33,10 @@ export default function AffiliatesAdminPage() {
       fields={fields}
       columns={['name', 'whatsapp', 'slug', 'status', 'end_date']}
       helpText="Verifikasi manual bahwa pendaftar benar alumni jamaah Wujud Tour, lalu ubah status ke 'aktif' agar halaman personal mereka bisa diakses di /a/[slug]. Set 'nonaktif' kapan saja untuk langsung menutup akses."
+      extraRowAction={(item) => ({
+        href: `/admin/affiliate-commissions?affiliate_name=${encodeURIComponent(item.name)}`,
+        label: 'Komisi',
+      })}
     />
   );
 }
