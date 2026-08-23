@@ -33,7 +33,6 @@ const NAV_GROUPS = [
     items: [
       { href: '/admin/partner-leads', label: 'Pendaftar White Label' },
       { href: '/admin/affiliates', label: 'Affiliate Alumni' },
-      { href: '/admin/affiliate-commissions', label: 'Komisi Affiliate' },
     ],
   },
   {
