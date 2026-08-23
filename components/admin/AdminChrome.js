@@ -28,6 +28,10 @@ const NAV_GROUPS = [
     ],
   },
   {
+    label: 'Kemitraan',
+    items: [{ href: '/admin/partner-leads', label: 'Pendaftar White Label' }],
+  },
+  {
     label: 'Pengaturan',
     items: [
       { href: '/admin/settings', label: 'Pengaturan Situs' },

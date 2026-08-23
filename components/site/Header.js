@@ -121,6 +121,9 @@ export default function Header({ siteName, logo, menuData }) {
             </div>
           ))}
 
+          <Link href="/white-label" className="eyebrow text-gold hover:text-gold-light transition-colors link-underline">
+            Umroh White Label
+          </Link>
           <Link href="/artikel" className="eyebrow text-ink/80 hover:text-emerald transition-colors link-underline">
             Artikel
           </Link>
@@ -169,6 +172,7 @@ export default function Header({ siteName, logo, menuData }) {
               />
             ))}
             {[
+              { href: '/white-label', label: 'Umroh White Label' },
               { href: '/artikel', label: 'Artikel' },
               { href: '/gallery', label: 'Galeri' },
               { href: '/contact', label: 'Kontak' },
