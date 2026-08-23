@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 export default function AffiliateRegisterForm() {
-  const [form, setForm] = useState({ name: '', whatsapp: '', umroh_year: '', message: '' });
+  const [form, setForm] = useState({ name: '', whatsapp: '', email: '', umroh_year: '', message: '' });
   const [status, setStatus] = useState('idle');
 
   async function handleSubmit(e) {
@@ -17,7 +17,7 @@ export default function AffiliateRegisterForm() {
       });
       if (res.ok) {
         setStatus('done');
-        setForm({ name: '', whatsapp: '', umroh_year: '', message: '' });
+        setForm({ name: '', whatsapp: '', email: '', umroh_year: '', message: '' });
       } else {
         setStatus('error');
       }
@@ -59,6 +59,15 @@ export default function AffiliateRegisterForm() {
             placeholder="08xxxxxxxxxx"
             value={form.whatsapp}
             onChange={(e) => setForm((f) => ({ ...f, whatsapp: e.target.value }))}
+            className="mt-1.5 w-full border border-line px-3 py-2.5 text-sm focus:border-emerald outline-none"
+          />
+        </label>
+        <label className="block sm:col-span-2">
+          <span className="text-sm font-medium text-ink/70">Alamat Email (opsional)</span>
+          <input
+            type="email"
+            value={form.email}
+            onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
             className="mt-1.5 w-full border border-line px-3 py-2.5 text-sm focus:border-emerald outline-none"
           />
         </label>

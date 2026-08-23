@@ -25,7 +25,7 @@ function uniqueSlug(base) {
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { name, whatsapp, umroh_year, message } = body;
+    const { name, whatsapp, email, umroh_year, message } = body;
 
     if (!name || !whatsapp) {
       return NextResponse.json({ error: 'Nama dan nomor WhatsApp wajib diisi' }, { status: 400 });
@@ -36,11 +36,12 @@ export async function POST(req) {
     const row = createRow('affiliates', {
       name: String(name).slice(0, 200),
       whatsapp: String(whatsapp).slice(0, 30),
+      email: email ? String(email).slice(0, 200) : '',
       slug,
       umroh_year: umroh_year ? String(umroh_year).slice(0, 100) : '',
       message: message ? String(message).slice(0, 500) : '',
       photo: '',
-      status: 'pending',
+      status: 'nonaktif',
     });
 
     return NextResponse.json({ ok: true, slug: row.slug });

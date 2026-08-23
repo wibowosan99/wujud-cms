@@ -144,9 +144,13 @@ export default function ModelManager({ model, title, fields, columns, helpText }
                     className="w-full border border-line px-3 py-2 focus:border-emerald outline-none text-sm bg-white"
                   >
                     <option value="">Pilih...</option>
-                    {f.options.map((o) => (
-                      <option key={o.value} value={o.value}>{o.label}</option>
-                    ))}
+                    {f.options.map((o) => {
+                      const value = typeof o === 'string' ? o : o.value;
+                      const label = typeof o === 'string' ? o : o.label;
+                      return (
+                        <option key={value} value={value}>{label}</option>
+                      );
+                    })}
                   </select>
                 )}
 
@@ -191,6 +195,16 @@ export default function ModelManager({ model, title, fields, columns, helpText }
                       {uploadingField === f.name && <p className="text-xs text-emerald mt-1">Mengunggah...</p>}
                     </div>
                   </div>
+                )}
+
+                {f.type === 'date' && (
+                  <input
+                    type="date"
+                    value={form[f.name] ?? ''}
+                    onChange={(e) => setForm((s) => ({ ...s, [f.name]: e.target.value }))}
+                    required={f.required}
+                    className="w-full border border-line px-3 py-2 focus:border-emerald outline-none text-sm bg-white"
+                  />
                 )}
 
                 {(f.type === 'text' || !f.type) && (
