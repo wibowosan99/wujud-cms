@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { CATEGORY_LABEL } from '@/lib/data';
 
-export default function PackageCard({ pkg }) {
+export default function PackageCard({ pkg, refSlug }) {
+  const href = refSlug ? `/paket/${pkg.slug}?ref=${refSlug}` : `/paket/${pkg.slug}`;
   return (
     <Link
-      href={`/paket/${pkg.slug}`}
+      href={href}
       className="group block bg-white border border-line/70 hover:border-gold transition-colors"
     >
       <div className="relative h-56 overflow-hidden bg-emerald-tint">

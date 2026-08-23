@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getPackageBySlug, getSettings, waLink, CATEGORY_LABEL } from '@/lib/data';
+import { getPackageBySlug, getSettings, waLink, waLinkTo, getAffiliateBySlug, CATEGORY_LABEL } from '@/lib/data';
 
 export async function generateMetadata({ params }) {
   const pkg = getPackageBySlug(params.slug);
@@ -7,11 +7,14 @@ export async function generateMetadata({ params }) {
   return { title: pkg.title, description: pkg.excerpt };
 }
 
-export default function PackageDetailPage({ params }) {
+export default function PackageDetailPage({ params, searchParams }) {
   const pkg = getPackageBySlug(params.slug);
   if (!pkg) notFound();
   const settings = getSettings();
   const message = `Saya (Nama Anda) dari (Lokasi Anda), ingin mendaftar paket ${pkg.title} di ${settings.site_name}`;
+
+  const affiliate = searchParams?.ref ? getAffiliateBySlug(searchParams.ref) : null;
+  const contactHref = affiliate ? waLinkTo(affiliate.whatsapp, message) : waLink(settings, message);
 
   return (
     <>
@@ -53,7 +56,7 @@ export default function PackageDetailPage({ params }) {
               <dd className="font-medium">{pkg.price}</dd>
             </div>
           </dl>
-          <a href={waLink(settings, message)} target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full justify-center mt-7">
+          <a href={contactHref} target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full justify-center mt-7">
             Daftar via WhatsApp
           </a>
         </aside>
