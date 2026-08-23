@@ -11,9 +11,16 @@ const fields = [
   { name: 'photo', label: 'Foto', type: 'image' },
   {
     name: 'status',
-    label: 'Status',
+    label: 'Status Verifikasi',
     type: 'select',
     options: ['pending', 'approved', 'rejected'],
+  },
+  { name: 'active', label: 'Aktifkan Halaman Personal', type: 'checkbox' },
+  {
+    name: 'valid_until',
+    label: 'Masa Berlaku Sampai (opsional)',
+    type: 'text',
+    hint: 'Format YYYY-MM-DD, mis. 2026-12-31. Kosongkan jika tidak ada batas waktu.',
   },
 ];
 
@@ -23,7 +30,7 @@ export default function AffiliatesAdminPage() {
       model="affiliates"
       title="Affiliate Alumni"
       fields={fields}
-      columns={['name', 'whatsapp', 'slug', 'status']}
+      columns={['name', 'whatsapp', 'slug', 'status', 'active', 'valid_until']}
       helpText="Verifikasi manual bahwa pendaftar benar alumni jamaah Wujud Tour, lalu ubah status ke 'approved' agar halaman personal mereka aktif di /a/[slug]."
     />
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 const NAV_GROUPS = [
@@ -46,6 +47,11 @@ const NAV_GROUPS = [
 export default function AdminChrome({ user, children }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [pathname]);
 
   if (pathname === '/admin/login') return <>{children}</>;
 
@@ -57,10 +63,29 @@ export default function AdminChrome({ user, children }) {
 
   return (
     <div className="min-h-screen flex bg-[#F5F3ED]">
-      <aside className="w-64 shrink-0 bg-emerald-deep text-sand/90 flex flex-col">
-        <div className="px-6 py-6 border-b border-white/10">
-          <span className="font-display text-xl text-white">Wujud Tour</span>
-          <p className="eyebrow text-gold-light mt-1 text-[0.65rem]">Admin Panel</p>
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-30 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+      <aside
+        className={`w-64 shrink-0 bg-emerald-deep text-sand/90 flex flex-col fixed inset-y-0 left-0 z-40 transform transition-transform duration-200 ease-in-out lg:static lg:translate-x-0 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="px-6 py-6 border-b border-white/10 flex items-center justify-between">
+          <div>
+            <span className="font-display text-xl text-white">Wujud Tour</span>
+            <p className="eyebrow text-gold-light mt-1 text-[0.65rem]">Admin Panel</p>
+          </div>
+          <button
+            aria-label="Tutup menu"
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden text-sand/60 hover:text-white p-1"
+          >
+            ✕
+          </button>
         </div>
         <nav className="flex-1 overflow-y-auto py-4">
           {NAV_GROUPS.map((group) => (
@@ -93,13 +118,24 @@ export default function AdminChrome({ user, children }) {
       </aside>
 
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="h-16 bg-white border-b border-line flex items-center justify-between px-8">
-          <span className="text-sm text-ink/50">Selamat datang, <strong className="text-ink">{user?.name || user?.username}</strong></span>
-          <button onClick={handleLogout} className="text-sm font-medium text-ink/60 hover:text-red-600">
+        <header className="h-16 bg-white border-b border-line flex items-center justify-between px-4 sm:px-8 gap-3">
+          <button
+            aria-label="Buka menu"
+            onClick={() => setSidebarOpen(true)}
+            className="lg:hidden text-ink/70 hover:text-emerald p-1 -ml-1"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </button>
+          <span className="text-sm text-ink/50 truncate">
+            Selamat datang, <strong className="text-ink">{user?.name || user?.username}</strong>
+          </span>
+          <button onClick={handleLogout} className="text-sm font-medium text-ink/60 hover:text-red-600 shrink-0">
             Keluar
           </button>
         </header>
-        <main className="flex-1 p-8 overflow-y-auto">{children}</main>
+        <main className="flex-1 p-4 sm:p-8 overflow-y-auto overflow-x-hidden">{children}</main>
       </div>
     </div>
   );
