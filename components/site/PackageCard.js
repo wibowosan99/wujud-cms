@@ -8,13 +8,13 @@ export default function PackageCard({ pkg, refSlug }) {
       href={href}
       className="group block bg-white border border-line/70 hover:border-gold transition-colors"
     >
-      <div className="relative h-56 overflow-hidden bg-emerald-tint">
+      <div className="relative h-64 overflow-hidden bg-emerald-tint flex items-center justify-center">
         {pkg.image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={pkg.image}
             alt={pkg.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-emerald/30 font-display text-3xl">

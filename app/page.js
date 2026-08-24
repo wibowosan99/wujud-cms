@@ -267,10 +267,10 @@ export default function HomePage() {
           <div className="mt-10 grid sm:grid-cols-3 gap-6">
             {articles.map((a) => (
               <Link key={a.id} href={`/artikel/${a.slug}`} className="group block">
-                <div className="h-44 bg-emerald-tint overflow-hidden">
+                <div className="h-44 bg-emerald-tint overflow-hidden flex items-center justify-center">
                   {a.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={a.image} alt={a.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <img src={a.image} alt={a.title} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center font-display text-2xl text-emerald/30">
                       {a.title.slice(0, 1)}

@@ -35,7 +35,9 @@ export default function PackageDetailPage({ params, searchParams }) {
         <div>
           {pkg.image && (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={pkg.image} alt={pkg.title} className="w-full h-72 sm:h-96 object-cover mb-10" />
+            <div className="w-full bg-emerald-tint mb-10 flex items-center justify-center max-h-[600px] overflow-hidden">
+              <img src={pkg.image} alt={pkg.title} className="w-full h-full object-contain" />
+            </div>
           )}
           <div className="prose-content text-ink/75 text-lg whitespace-pre-line">{pkg.content}</div>
         </div>
