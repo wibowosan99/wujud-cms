@@ -14,7 +14,12 @@ const FIELD_GROUPS = [
   {
     title: 'Kontak',
     fields: [
-      { key: 'whatsapp_number', label: 'Nomor WhatsApp', hint: 'Format: 62xxxxxxxxxx (tanpa tanda + atau spasi)' },
+      { key: 'whatsapp_number', label: 'Nomor WhatsApp Utama', hint: 'Format: 62xxxxxxxxxx (tanpa tanda + atau spasi)' },
+      {
+        key: 'whatsapp_number_2',
+        label: 'Nomor WhatsApp Kedua (opsional)',
+        hint: 'Kosongkan jika hanya pakai 1 nomor. Jika diisi, sistem otomatis membagi rata klik "Hubungi Kami" secara acak ke salah satu dari 2 nomor ini (untuk bagi beban CS).',
+      },
       { key: 'whatsapp_message', label: 'Pesan Default WhatsApp', textarea: true },
       { key: 'phone', label: 'Nomor Telepon' },
       { key: 'email', label: 'Email' },
