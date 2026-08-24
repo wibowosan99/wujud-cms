@@ -8,7 +8,7 @@ export default function PackageCard({ pkg, refSlug }) {
       href={href}
       className="group block bg-white border border-line/70 hover:border-gold transition-colors"
     >
-      <div className="relative h-64 overflow-hidden bg-emerald-tint flex items-center justify-center">
+      <div className={`relative aspect-[3/4] overflow-hidden flex items-center justify-center ${pkg.image ? 'bg-white' : 'bg-emerald-tint'}`}>
         {pkg.image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
