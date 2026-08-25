@@ -143,7 +143,7 @@ export default function WhiteLabelPage() {
           Tim kami akan menghubungi Anda melalui WhatsApp untuk proses selanjutnya.
         </p>
         <div className="mt-8">
-          <PartnerLeadForm />
+          <PartnerLeadForm whatsappNumber={settings.whatsapp_number} />
         </div>
       </section>
     </>

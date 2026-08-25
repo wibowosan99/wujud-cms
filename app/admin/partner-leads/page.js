@@ -7,6 +7,13 @@ const fields = [
   { name: 'whatsapp', label: 'No. WhatsApp', type: 'text', required: true },
   { name: 'brand_name', label: 'Nama Travel/Brand Diinginkan', type: 'text' },
   { name: 'city', label: 'Kota', type: 'text' },
+  { name: 'jamaah_estimate', label: 'Estimasi Jumlah Jamaah', type: 'text' },
+  {
+    name: 'partner_type',
+    label: 'Tipe Mitra',
+    type: 'select',
+    options: ['individu', 'travel_agency'],
+  },
   { name: 'message', label: 'Pesan Tambahan', type: 'textarea', rows: 3 },
   {
     name: 'status',
@@ -22,7 +29,7 @@ export default function PartnerLeadsAdminPage() {
       model="partner_leads"
       title="Pendaftar White Label"
       fields={fields}
-      columns={['name', 'whatsapp', 'brand_name', 'status']}
+      columns={['name', 'whatsapp', 'partner_type', 'jamaah_estimate', 'status']}
       helpText="Daftar calon mitra yang mengajukan pendaftaran program Umroh White Label lewat website. Update status setelah dihubungi."
     />
   );

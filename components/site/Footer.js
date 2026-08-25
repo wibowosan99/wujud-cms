@@ -90,8 +90,20 @@ export default function Footer({ settings }) {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-x py-5 text-center text-xs text-sand/50">
-          &copy; {year} {settings.site_name || 'Wujud Tour & Travel'}. Seluruh hak cipta dilindungi.
+        <div className="container-x py-5 text-center text-xs text-sand/50 space-y-1.5">
+          <p>&copy; {year} {settings.site_name || 'Wujud Tour & Travel'}. Seluruh hak cipta dilindungi.</p>
+          <p>
+            Website disupport oleh{' '}
+            <a
+              href="https://dtgroup.co.id"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sand/60 hover:text-gold-light link-underline"
+            >
+              dtgroup.co.id
+            </a>
+            {' '}&mdash; Scale up usaha Anda.
+          </p>
         </div>
       </div>
     </footer>
