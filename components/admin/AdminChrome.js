@@ -26,6 +26,7 @@ const NAV_GROUPS = [
       { href: '/admin/testimonials', label: 'Testimoni' },
       { href: '/admin/partners', label: 'Mitra' },
       { href: '/admin/stats', label: 'Statistik' },
+      { href: '/admin/branches', label: 'Kantor Pusat & Cabang' },
     ],
   },
   {

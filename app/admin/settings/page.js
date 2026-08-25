@@ -27,11 +27,21 @@ const FIELD_GROUPS = [
     ],
   },
   {
+    title: 'Legalitas & Perizinan',
+    fields: [
+      { key: 'ppiu_number', label: 'Nomor Izin Umroh (PPIU)' },
+      { key: 'pihk_number', label: 'Nomor Izin Haji Khusus (PIHK)' },
+      { key: 'show_licenses', label: 'Tampilkan Badge Izin di Situs Publik', checkbox: true },
+    ],
+  },
+  {
     title: 'Media Sosial',
     fields: [
       { key: 'instagram', label: 'Instagram (URL)' },
       { key: 'facebook', label: 'Facebook (URL)' },
       { key: 'youtube', label: 'YouTube (URL)' },
+      { key: 'tiktok', label: 'TikTok (URL)' },
+      { key: 'twitter', label: 'Twitter / X (URL)' },
     ],
   },
 ];
@@ -189,21 +199,35 @@ export default function AdminSettingsPage() {
             <div className="space-y-4">
               {group.fields.map((f) => (
                 <label key={f.key} className="block">
-                  <span className="text-sm font-medium text-ink/70">{f.label}</span>
-                  {f.textarea ? (
-                    <textarea
-                      value={settings[f.key] ?? ''}
-                      onChange={(e) => setSettings((s) => ({ ...s, [f.key]: e.target.value }))}
-                      rows={3}
-                      className="mt-1.5 w-full border border-line px-3 py-2 text-sm focus:border-emerald outline-none"
-                    />
+                  {f.checkbox ? (
+                    <span className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={!!Number(settings[f.key] ?? 0)}
+                        onChange={(e) => setSettings((s) => ({ ...s, [f.key]: e.target.checked ? 1 : 0 }))}
+                        className="h-4 w-4"
+                      />
+                      <span className="text-sm font-medium text-ink/70">{f.label}</span>
+                    </span>
                   ) : (
-                    <input
-                      type="text"
-                      value={settings[f.key] ?? ''}
-                      onChange={(e) => setSettings((s) => ({ ...s, [f.key]: e.target.value }))}
-                      className="mt-1.5 w-full border border-line px-3 py-2 text-sm focus:border-emerald outline-none"
-                    />
+                    <>
+                      <span className="text-sm font-medium text-ink/70">{f.label}</span>
+                      {f.textarea ? (
+                        <textarea
+                          value={settings[f.key] ?? ''}
+                          onChange={(e) => setSettings((s) => ({ ...s, [f.key]: e.target.value }))}
+                          rows={3}
+                          className="mt-1.5 w-full border border-line px-3 py-2 text-sm focus:border-emerald outline-none"
+                        />
+                      ) : (
+                        <input
+                          type="text"
+                          value={settings[f.key] ?? ''}
+                          onChange={(e) => setSettings((s) => ({ ...s, [f.key]: e.target.value }))}
+                          className="mt-1.5 w-full border border-line px-3 py-2 text-sm focus:border-emerald outline-none"
+                        />
+                      )}
+                    </>
                   )}
                   {f.hint && <p className="text-xs text-ink/40 mt-1">{f.hint}</p>}
                 </label>
