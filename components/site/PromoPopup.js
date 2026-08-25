@@ -59,7 +59,9 @@ export default function PromoPopup({ settings }) {
 
         {settings.popup_image && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={settings.popup_image} alt={settings.popup_title || 'Promo'} className="w-full max-h-64 object-cover" />
+          <div className="w-full max-h-80 bg-emerald-tint flex items-center justify-center overflow-hidden">
+            <img src={settings.popup_image} alt={settings.popup_title || 'Promo'} className="w-full h-full object-contain" />
+          </div>
         )}
 
         <div className="p-6 text-center">
