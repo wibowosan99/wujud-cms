@@ -7,7 +7,11 @@ export const metadata = { title: 'Umroh White Label - Punya Travel Sendiri' };
 const BENEFITS = [
   {
     title: 'Branding Milik Anda Sendiri',
-    text: 'Bangun nama travel Anda sendiri di bawah dukungan penuh Wujud Tour & Travel yang sudah berpengalaman dan berizin resmi.',
+    text: 'Bangun nama travel Anda sendiri di bawah dukungan penuh Wujud Tour & Travel yang sudah berpengalaman dan berizin resmi. Anda tetap memasarkan dan mengelola jamaah dengan nama serta harga jual sendiri.',
+  },
+  {
+    title: 'Dana Jamaah Aman',
+    text: 'Pembayaran jamaah dikelola melalui rekening terpisah (escrow), bukan rekening pribadi &mdash; transparan dan aman bagi Anda maupun jamaah Anda.',
   },
   {
     title: 'Pendampingan Personal',
@@ -32,12 +36,24 @@ const STEPS = [
 
 const FAQS = [
   {
+    q: 'Apakah saya akan kehilangan brand atau kendali atas jamaah saya?',
+    a: 'Tidak. Anda tetap memasarkan dan mengelola jamaah Anda sendiri, dengan nama dan harga jual yang Anda tentukan sendiri.',
+  },
+  {
+    q: 'Siapa yang mengurus visa, tiket, dan hotel?',
+    a: 'Wujud Tour & Travel sebagai pemegang izin PPIU resmi menangani seluruh proses visa, tiket pesawat, kontrak hotel, dan handling di Arab Saudi. Anda cukup fokus pada pemasaran dan penjualan dengan brand Anda sendiri.',
+  },
+  {
     q: 'Apakah saya perlu izin PPIU sendiri?',
     a: 'Tidak wajib di awal. Anda dapat menjual paket menggunakan izin resmi Wujud Tour & Travel sebagai mitra, sambil membangun brand Anda sendiri.',
   },
   {
-    q: 'Bagaimana sistem pembagian komisi?',
-    a: 'Skema komisi didiskusikan secara personal saat konsultasi, disesuaikan dengan target dan kemampuan penjualan Anda.',
+    q: 'Bagaimana sistem pembagian komisi dan markup?',
+    a: 'Anda mendapat harga dasar yang jelas dan tetap dari kami, lalu bebas menentukan markup/harga jual sendiri ke jamaah sesuai target keuntungan Anda. Detail skema didiskusikan personal saat konsultasi.',
+  },
+  {
+    q: 'Apakah dana jamaah saya aman?',
+    a: 'Ya. Pembayaran dikelola melalui rekening terpisah (escrow), bukan rekening pribadi, sehingga dana jamaah tercatat transparan dan aman.',
   },
   {
     q: 'Apakah saya akan didampingi setelah bergabung?',
