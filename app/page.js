@@ -14,6 +14,7 @@ import PackageCard from '@/components/site/PackageCard';
 import SectionHeading from '@/components/site/SectionHeading';
 import HeroBackground from '@/components/site/HeroBackground';
 import LogoMarquee from '@/components/site/LogoMarquee';
+import PromoPopup from '@/components/site/PromoPopup';
 
 export default function HomePage() {
   const settings = getSettings();
@@ -28,6 +29,8 @@ export default function HomePage() {
 
   return (
     <>
+      <PromoPopup settings={settings} />
+
       {/* HERO */}
       <section className="relative bg-emerald-deep text-white overflow-hidden min-h-[520px] sm:min-h-[600px] lg:min-h-[680px] flex items-center">
         <HeroBackground slides={heroSlides} />

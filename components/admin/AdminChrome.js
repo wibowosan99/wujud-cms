@@ -16,6 +16,7 @@ const NAV_GROUPS = [
       { href: '/admin/packages', label: 'Paket Umroh & Haji' },
       { href: '/admin/articles', label: 'Artikel' },
       { href: '/admin/gallery', label: 'Galeri' },
+      { href: '/admin/popup', label: 'Popup Promosi' },
     ],
   },
   {
