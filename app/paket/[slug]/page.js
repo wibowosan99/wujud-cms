@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getPackageBySlug, getSettings, waLink, waLinkTo, getAffiliateBySlug, CATEGORY_LABEL } from '@/lib/data';
+import TrackedWhatsAppLink from '@/components/site/TrackedWhatsAppLink';
 
 export async function generateMetadata({ params }) {
   const pkg = getPackageBySlug(params.slug);
@@ -67,9 +68,9 @@ export default function PackageDetailPage({ params, searchParams }) {
               <dd className="font-medium text-right">{pkg.price}</dd>
             </div>
           </dl>
-          <a href={contactHref} target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full justify-center mt-7">
+          <TrackedWhatsAppLink href={contactHref} eventLabel={`Package: ${pkg.title}`} className="btn btn-primary w-full justify-center mt-7">
             Daftar via WhatsApp
-          </a>
+          </TrackedWhatsAppLink>
         </aside>
       </section>
     </>

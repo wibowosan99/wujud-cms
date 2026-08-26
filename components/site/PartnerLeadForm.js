@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackMetaEvent } from '@/lib/trackEvent';
 
 const JAMAAH_OPTIONS = [
   { value: '', label: 'Pilih estimasi' },
@@ -64,6 +65,10 @@ export default function PartnerLeadForm({ whatsappNumber }) {
       });
       if (res.ok) {
         setStatus('done');
+        trackMetaEvent('Lead', {
+          customData: { content_name: 'White Label Registration', partner_type: form.partner_type },
+          phone: form.whatsapp,
+        });
         if (whatsappNumber) {
           window.open(buildWaLink(whatsappNumber, form), '_blank');
         }

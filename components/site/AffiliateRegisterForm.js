@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackMetaEvent } from '@/lib/trackEvent';
 
 export default function AffiliateRegisterForm() {
   const [form, setForm] = useState({ name: '', whatsapp: '', email: '', umroh_year: '', message: '' });
@@ -17,6 +18,11 @@ export default function AffiliateRegisterForm() {
       });
       if (res.ok) {
         setStatus('done');
+        trackMetaEvent('Lead', {
+          customData: { content_name: 'Affiliate Registration' },
+          phone: form.whatsapp,
+          email: form.email,
+        });
         setForm({ name: '', whatsapp: '', email: '', umroh_year: '', message: '' });
       } else {
         setStatus('error');

@@ -12,6 +12,7 @@ import SiteChrome from "@/components/site/SiteChrome";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
 import WhatsAppFloat from "@/components/site/WhatsAppFloat";
+import MetaPixel from "@/components/site/MetaPixel";
 import { getSettings, getPackages } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
@@ -69,6 +70,7 @@ export default function RootLayout({ children }) {
         </head>
       )}
       <body className="min-h-full flex flex-col bg-sand text-ink">
+        <MetaPixel pixelId={settings.meta_pixel_id} />
         <SiteChrome
           header={<Header siteName={settings.site_name} logo={settings.logo} menuData={menuData} />}
           footer={<Footer settings={settings} />}

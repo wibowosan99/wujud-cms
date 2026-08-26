@@ -27,6 +27,17 @@ const FIELD_GROUPS = [
     ],
   },
   {
+    title: 'Meta Pixel & Conversion API',
+    fields: [
+      { key: 'meta_pixel_id', label: 'Meta Pixel ID' },
+      {
+        key: 'meta_capi_token',
+        label: 'Conversion API Access Token',
+        hint: 'Dari Meta Events Manager > Settings > Conversions API. Dipakai untuk kirim event dari server (lebih akurat, tidak terblokir ad-blocker).',
+      },
+    ],
+  },
+  {
     title: 'Legalitas & Perizinan',
     fields: [
       { key: 'ppiu_number', label: 'Nomor Izin Umroh (PPIU)' },

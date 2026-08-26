@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { waLink, getBranches } from '@/lib/data';
 import SocialIcons from './SocialIcons';
+import TrackedWhatsAppLink from './TrackedWhatsAppLink';
 
 export default function Footer({ settings }) {
   const year = new Date().getFullYear();
@@ -78,14 +79,13 @@ export default function Footer({ settings }) {
               {settings.address && <li>{settings.address}</li>}
             </ul>
           )}
-          <a
+          <TrackedWhatsAppLink
             href={waLink(settings)}
-            target="_blank"
-            rel="noopener noreferrer"
+            eventLabel="Footer WhatsApp Button"
             className="btn btn-primary mt-5"
           >
             Chat WhatsApp
-          </a>
+          </TrackedWhatsAppLink>
         </div>
       </div>
 
