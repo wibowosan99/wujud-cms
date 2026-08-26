@@ -4,7 +4,16 @@ import { getPackageBySlug, getSettings, waLink, waLinkTo, getAffiliateBySlug, CA
 export async function generateMetadata({ params }) {
   const pkg = getPackageBySlug(params.slug);
   if (!pkg) return {};
-  return { title: pkg.title, description: pkg.excerpt };
+  return {
+    title: pkg.title,
+    description: pkg.excerpt,
+    openGraph: {
+      title: pkg.title,
+      description: pkg.excerpt,
+      images: pkg.image ? [{ url: pkg.image }] : undefined,
+      type: "website",
+    },
+  };
 }
 
 export default function PackageDetailPage({ params, searchParams }) {

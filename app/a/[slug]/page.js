@@ -5,7 +5,10 @@ import PackageCard from '@/components/site/PackageCard';
 export async function generateMetadata({ params }) {
   const affiliate = getAffiliateBySlug(params.slug);
   if (!affiliate) return {};
-  return { title: `${affiliate.name} - Affiliate Wujud Tour & Travel` };
+  return {
+    title: `${affiliate.name} - Affiliate Wujud Tour & Travel`,
+    robots: { index: false, follow: true },
+  };
 }
 
 export default function AffiliatePersonalPage({ params }) {

@@ -18,9 +18,28 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   const settings = getSettings();
+  const title = `${settings.tagline || "Umroh, Haji & Halal Tour"} | ${settings.site_name || "Wujud Tour & Travel"}`;
+  const description = settings.about_short || "Wujud Tour & Travel - Penyelenggara Umroh dan Haji terpercaya.";
+  const siteUrl = "https://wujudtour.com";
   return {
-    title: `${settings.tagline || "Umroh, Haji & Halal Tour"} | ${settings.site_name || "Wujud Tour & Travel"}`,
-    description: settings.about_short || "Wujud Tour & Travel - Penyelenggara Umroh dan Haji terpercaya.",
+    metadataBase: new URL(siteUrl),
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: siteUrl,
+      siteName: settings.site_name || "Wujud Tour & Travel",
+      images: settings.logo ? [{ url: settings.logo }] : undefined,
+      locale: "id_ID",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: settings.logo ? [settings.logo] : undefined,
+    },
   };
 }
 

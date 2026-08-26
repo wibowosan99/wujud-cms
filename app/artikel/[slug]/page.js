@@ -4,7 +4,16 @@ import { getArticleBySlug } from '@/lib/data';
 export async function generateMetadata({ params }) {
   const article = getArticleBySlug(params.slug);
   if (!article) return {};
-  return { title: article.title, description: article.excerpt };
+  return {
+    title: article.title,
+    description: article.excerpt,
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      images: article.image ? [{ url: article.image }] : undefined,
+      type: "article",
+    },
+  };
 }
 
 export default function ArticleDetailPage({ params }) {
