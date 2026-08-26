@@ -35,8 +35,8 @@ export default function PackageDetailPage({ params, searchParams }) {
         <div>
           {pkg.image && (
             // eslint-disable-next-line @next/next/no-img-element
-            <div className="w-full bg-emerald-tint mb-10 flex items-center justify-center max-h-[600px] overflow-hidden">
-              <img src={pkg.image} alt={pkg.title} className="w-full h-full object-contain" />
+            <div className="w-full h-[420px] sm:h-[520px] bg-emerald-tint mb-10 flex items-center justify-center overflow-hidden">
+              <img src={pkg.image} alt={pkg.title} className="max-w-full max-h-full object-contain" />
             </div>
           )}
           <div className="prose-content text-ink/75 text-lg whitespace-pre-line">{pkg.content}</div>
@@ -53,9 +53,9 @@ export default function PackageDetailPage({ params, searchParams }) {
               <dt className="text-ink/50">Keberangkatan</dt>
               <dd className="font-medium">{pkg.departure_date}</dd>
             </div>
-            <div className="flex justify-between">
-              <dt className="text-ink/50">Harga</dt>
-              <dd className="font-medium">{pkg.price}</dd>
+            <div className="flex justify-between gap-4">
+              <dt className="text-ink/50 shrink-0">Harga</dt>
+              <dd className="font-medium text-right">{pkg.price}</dd>
             </div>
           </dl>
           <a href={contactHref} target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full justify-center mt-7">
