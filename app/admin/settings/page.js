@@ -55,6 +55,17 @@ const FIELD_GROUPS = [
       { key: 'twitter', label: 'Twitter / X (URL)' },
     ],
   },
+  {
+    title: 'Integrasi & Marketing',
+    fields: [
+      { key: 'meta_pixel_id', label: 'Meta Pixel ID', hint: 'Dari Meta Events Manager. Kosongkan untuk menonaktifkan tracking.' },
+      {
+        key: 'meta_capi_token',
+        label: 'Meta Conversions API Access Token',
+        hint: 'Token dari Meta Events Manager > Settings > Conversions API. Untuk tracking sisi server yang lebih akurat (tidak terblokir ad-blocker).',
+      },
+    ],
+  },
 ];
 
 const THEME_COLORS = [

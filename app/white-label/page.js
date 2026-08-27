@@ -1,5 +1,6 @@
 import PageHero from '@/components/site/PageHero';
 import PartnerLeadForm from '@/components/site/PartnerLeadForm';
+import TrackedWhatsAppLink from '@/components/site/TrackedWhatsAppLink';
 import { waLink, getSettings } from '@/lib/data';
 
 export const metadata = { title: 'Umroh White Label - Punya Travel Sendiri' };
@@ -83,9 +84,9 @@ export default function WhiteLabelPage() {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <a href="#daftar" className="btn btn-primary">Daftar Jadi Mitra</a>
-          <a href={waLink(settings)} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+          <TrackedWhatsAppLink href={waLink(settings)} className="btn btn-outline" eventLabel="White Label Page">
             Tanya via WhatsApp
-          </a>
+          </TrackedWhatsAppLink>
         </div>
       </section>
 

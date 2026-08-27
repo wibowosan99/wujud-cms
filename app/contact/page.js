@@ -1,5 +1,6 @@
 import { getSettings, waLink } from '@/lib/data';
 import PageHero from '@/components/site/PageHero';
+import TrackedWhatsAppLink from '@/components/site/TrackedWhatsAppLink';
 
 export const metadata = { title: 'Kontak' };
 
@@ -31,9 +32,9 @@ export default function ContactPage() {
               </div>
             )}
           </dl>
-          <a href={waLink(settings)} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-8">
+          <TrackedWhatsAppLink href={waLink(settings)} className="btn btn-primary mt-8" eventLabel="Contact Page Primary">
             Chat via WhatsApp
-          </a>
+          </TrackedWhatsAppLink>
         </div>
         <div className="bg-emerald-tint border border-line p-8">
           <h2 className="font-display text-2xl mb-4">Konsultasi Gratis</h2>
@@ -41,9 +42,9 @@ export default function ContactPage() {
             Tim kami siap membantu menjawab pertanyaan seputar paket Umroh, Haji Khusus, maupun Halal Holidays.
             Hubungi kami langsung melalui WhatsApp untuk respon tercepat.
           </p>
-          <a href={waLink(settings)} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-emerald link-underline">
+          <TrackedWhatsAppLink href={waLink(settings)} className="text-sm font-medium text-emerald link-underline" eventLabel="Contact Page Number">
             {settings.whatsapp_number}
-          </a>
+          </TrackedWhatsAppLink>
         </div>
       </section>
     </>

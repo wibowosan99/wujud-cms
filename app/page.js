@@ -15,6 +15,7 @@ import SectionHeading from '@/components/site/SectionHeading';
 import HeroBackground from '@/components/site/HeroBackground';
 import LogoMarquee from '@/components/site/LogoMarquee';
 import PromoPopup from '@/components/site/PromoPopup';
+import TrackedWhatsAppLink from '@/components/site/TrackedWhatsAppLink';
 
 export default function HomePage() {
   const settings = getSettings();
@@ -44,9 +45,9 @@ export default function HomePage() {
             <p className="mt-6 max-w-xl text-sand/75 text-lg leading-relaxed">{hero.subtitle}</p>
           )}
           <div className="mt-9 flex flex-wrap gap-4">
-            <a href={waLink(settings)} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+            <TrackedWhatsAppLink href={waLink(settings)} className="btn btn-primary" eventLabel="Hero CTA">
               {hero?.cta_label || 'Hubungi Kami'}
-            </a>
+            </TrackedWhatsAppLink>
             <Link href="/paket" className="btn btn-outline text-white">
               Lihat Semua Paket
             </Link>
@@ -191,14 +192,13 @@ export default function HomePage() {
           <p className="font-display text-xl sm:text-2xl text-emerald-deep leading-snug">
             Masih ragu memilih paket? Konsultasi gratis dengan tim kami sekarang.
           </p>
-          <a
+          <TrackedWhatsAppLink
             href={waLink(settings)}
-            target="_blank"
-            rel="noopener noreferrer"
             className="btn bg-emerald-deep text-white hover:bg-emerald shrink-0"
+            eventLabel="CTA Banner 1"
           >
             Chat via WhatsApp
-          </a>
+          </TrackedWhatsAppLink>
         </div>
       </section>
 
@@ -307,9 +307,9 @@ export default function HomePage() {
           <p className="mt-4 text-sand/70 max-w-md mx-auto">
             Dapatkan penawaran terbaik dan konsultasi gratis untuk perjalanan ibadah Anda.
           </p>
-          <a href={waLink(settings)} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-8">
+          <TrackedWhatsAppLink href={waLink(settings)} className="btn btn-primary mt-8" eventLabel="CTA Banner 2">
             Dapatkan Penawaran Terbaik
-          </a>
+          </TrackedWhatsAppLink>
         </div>
       </section>
     </>
