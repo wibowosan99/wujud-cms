@@ -17,7 +17,7 @@ export default function ModelManager(props) {
   );
 }
 
-function ModelManagerInner({ model, title, fields, columns, helpText, extraRowAction, renderSummary }) {
+function ModelManagerInner({ model, title, fields, columns, helpText, extraRowAction, rowActions, renderSummary }) {
   const searchParams = useSearchParams();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -283,6 +283,17 @@ function ModelManagerInner({ model, title, fields, columns, helpText, extraRowAc
                         {extraRowAction(item).label}
                       </a>
                     )}
+                    {rowActions && rowActions(item).map((action) => (
+                      <a
+                        key={action.label}
+                        href={action.href}
+                        target={action.external ? '_blank' : undefined}
+                        rel={action.external ? 'noopener noreferrer' : undefined}
+                        className="text-gold hover:underline mr-4 text-xs font-medium"
+                      >
+                        {action.label}
+                      </a>
+                    ))}
                     <button onClick={() => openEdit(item)} className="text-emerald hover:underline mr-4 text-xs font-medium">
                       Ubah
                     </button>

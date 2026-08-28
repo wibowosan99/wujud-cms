@@ -25,18 +25,41 @@ const fields = [
   },
 ];
 
+function buildWelcomeLink(affiliate) {
+  const personalUrl = `https://wujudtour.com/a/${affiliate.slug}`;
+  const text = [
+    `Assalamualaikum ${affiliate.name.split(' ')[0]}! Selamat bergabung sebagai Affiliate Alumni Wujud Tour & Travel 🎉`,
+    ``,
+    `Halaman personal Anda sudah aktif di:`,
+    personalUrl,
+    ``,
+    `Silakan bagikan halaman ini ke keluarga, teman, atau siapa saja yang berminat Umroh/Haji. Setiap jamaah yang closing lewat halaman Anda akan tercatat sebagai referral Anda.`,
+    ``,
+    `Terima kasih sudah bergabung, semoga menjadi ladang pahala untuk kita semua. 🤲`,
+  ].join('\n');
+  const clean = (affiliate.whatsapp || '').replace(/[^0-9]/g, '');
+  return `https://wa.me/${clean}?text=${encodeURIComponent(text)}`;
+}
+
 export default function AffiliatesAdminPage() {
   return (
     <ModelManager
       model="affiliates"
       title="Affiliate Alumni"
       fields={fields}
-      columns={['name', 'whatsapp', 'slug', 'status', 'end_date']}
+      columns={['name', 'whatsapp', 'slug', 'status', 'end_date', 'visit_count']}
       helpText="Verifikasi manual bahwa pendaftar benar alumni jamaah Wujud Tour, lalu ubah status ke 'aktif' agar halaman personal mereka bisa diakses di /a/[slug]. Set 'nonaktif' kapan saja untuk langsung menutup akses."
-      extraRowAction={(item) => ({
-        href: `/admin/affiliate-commissions?affiliate_name=${encodeURIComponent(item.name)}`,
-        label: 'Komisi',
-      })}
+      rowActions={(item) => [
+        {
+          href: `/admin/affiliate-commissions?affiliate_name=${encodeURIComponent(item.name)}`,
+          label: 'Komisi',
+        },
+        {
+          href: buildWelcomeLink(item),
+          label: 'Kirim Welcome',
+          external: true,
+        },
+      ]}
     />
   );
 }

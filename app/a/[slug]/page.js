@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getAffiliateBySlug, getPackages, waLinkTo } from '@/lib/data';
+import { getAffiliateBySlug, getPackages, waLinkTo, incrementAffiliateVisit } from '@/lib/data';
 import PackageCard from '@/components/site/PackageCard';
 
 export async function generateMetadata({ params }) {
@@ -14,6 +14,7 @@ export async function generateMetadata({ params }) {
 export default function AffiliatePersonalPage({ params }) {
   const affiliate = getAffiliateBySlug(params.slug);
   if (!affiliate) notFound();
+  const visitCount = incrementAffiliateVisit(affiliate.id);
 
   const packages = getPackages();
   const introMessage = `Halo ${affiliate.name.split(' ')[0]}, saya tertarik dengan paket Umroh/Haji Wujud Tour.`;
@@ -49,6 +50,9 @@ export default function AffiliatePersonalPage({ params }) {
             >
               Chat Langsung dengan {affiliate.name.split(' ')[0]}
             </a>
+            <p className="mt-3 text-xs text-sand/50">
+              Halaman ini sudah dilihat {visitCount.toLocaleString('id-ID')} kali
+            </p>
           </div>
         </div>
         <div className="arch-row text-sand relative" />
